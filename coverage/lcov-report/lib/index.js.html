@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">17.86% </span>
+        <span class="strong">17.02% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>15/84</span>
+        <span class='fraction'>16/94</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">8.33% </span>
+        <span class="strong">10% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>4/48</span>
+        <span class='fraction'>5/50</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.41% </span>
+        <span class="strong">7.14% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/27</span>
+        <span class='fraction'>2/28</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">17.5% </span>
+        <span class="strong">17.65% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>14/80</span>
+        <span class='fraction'>15/85</span>
       </div>
     </div>
   </div>
@@ -479,12 +479,30 @@
 434
 435
 436
-437</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -827,7 +845,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -858,6 +875,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -877,6 +900,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -921,6 +947,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = undefined;
+&nbsp;
+var _extends = Object.assign || /**
+                                 * @function
+                                 * @param target
+                                */ <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >function (target) {</span> <span class="cstat-no" title="statement not covered" >for (var i = 1; i &lt; arguments.length; i++) { <span class="cstat-no" title="statement not covered" >var source = arguments[i]; <span class="cstat-no" title="statement not covered" ></span>for (var key in source) { <span class="cstat-no" title="statement not covered" >if (Object.prototype.hasOwnProperty.call(source, key)) { <span class="cstat-no" title="statement not covered" >target[key] = source[key]; </span>} </span>} </span>} <span class="cstat-no" title="statement not covered" ></span>return target; </span>};</span>
 &nbsp;
 var _util = require('util');
 &nbsp;
@@ -1256,12 +1287,11 @@ let Logger = class Logger {
     * and deletes the original record
     *
     * @param {number=} time return of previous call to time()
-    * @param {string} [message]
+    * @param {string} message
      * @param {Object} [metadata]
      * @param {Object} [metadataStyles]
     */
-    timeEnd<span class="fstat-no" title="function not covered" >(time) {</span>
-<span class="cstat-no" title="statement not covered" >        let message = arguments.length &lt;= 1 || arguments[1] === undefined ? '' : arguments[1];</span>
+    timeEnd<span class="fstat-no" title="function not covered" >(time, message) {</span>
 <span class="cstat-no" title="statement not covered" >        let metadata = arguments.length &lt;= 2 || arguments[2] === undefined ? {} : arguments[2];</span>
 <span class="cstat-no" title="statement not covered" >        let metadataStyles = arguments[3];</span>
 &nbsp;
@@ -1271,8 +1301,8 @@ let Logger = class Logger {
 <span class="cstat-no" title="statement not covered" >        const seconds = diffTime &gt; 1000 &amp;&amp; Math.floor(diffTime / 1000);</span>
 <span class="cstat-no" title="statement not covered" >        const ms = diffTime - seconds * 1000;</span>
 &nbsp;
+<span class="cstat-no" title="statement not covered" >        metadata.readableTime = `${ seconds ? `${ seconds }s and ` : '' }${ ms }ms`;</span>
 <span class="cstat-no" title="statement not covered" >        metadata.timeMs = diffTime;</span>
-<span class="cstat-no" title="statement not covered" >        message = `${ message ? `${ message }: ` : '' }${ seconds ? `${ seconds }s and ` : '' }${ ms }ms`;</span>
 <span class="cstat-no" title="statement not covered" >        this.log(message, metadata, _nightingaleLevels2.default.DEBUG, { metadataStyles: metadataStyles });</span>
     }
 &nbsp;
@@ -1292,8 +1322,14 @@ let Logger = class Logger {
      * @param {Object} [metadataStyles]
      * @return {Logger}
     */
-    enter<span class="fstat-no" title="function not covered" >(fn, metadata, metadataStyles) {</span>
-<span class="cstat-no" title="statement not covered" >        return this.log(`enter ${ fn.name }`, metadata, _nightingaleLevels2.default.TRACE, { metadataStyles: metadataStyles });</span>
+    enter<span class="fstat-no" title="function not covered" >(fn) {</span>
+<span class="cstat-no" title="statement not covered" >        let metadata = arguments.length &lt;= 1 || arguments[1] === undefined ? {} : arguments[1];</span>
+<span class="cstat-no" title="statement not covered" >        let metadataStyles = arguments[2];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        metadata = _extends({</span>
+            functionName: fn.name
+        }, metadata);
+<span class="cstat-no" title="statement not covered" >        return this.log('enter', metadata, _nightingaleLevels2.default.TRACE, { metadataStyles: metadataStyles });</span>
     }
 &nbsp;
     /**
@@ -1315,7 +1351,10 @@ let Logger = class Logger {
      * @return {Logger}
     */
     exit<span class="fstat-no" title="function not covered" >(fn, metadata, metadataStyles) {</span>
-<span class="cstat-no" title="statement not covered" >        return this.log(`exit ${ fn.name }`, metadata, _nightingaleLevels2.default.TRACE, { metadataStyles: metadataStyles });</span>
+<span class="cstat-no" title="statement not covered" >        metadata = _extends({</span>
+            functionName: fn.name
+        }, metadata);
+<span class="cstat-no" title="statement not covered" >        return this.log('exit', metadata, _nightingaleLevels2.default.TRACE, { metadataStyles: metadataStyles });</span>
     }
 &nbsp;
     /**
@@ -1357,7 +1396,7 @@ exports.default = Logger;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Apr 30 2016 19:05:17 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon May 02 2016 14:53:30 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../prettify.js"></script>
