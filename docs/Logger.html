@@ -53,6 +53,10 @@
             
                 <li data-name="Logger#alert"><a href="Logger.html#alert">alert</a></li>
             
+                <li data-name="Logger#child"><a href="Logger.html#child">child</a></li>
+            
+                <li data-name="Logger#context"><a href="Logger.html#context">context</a></li>
+            
                 <li data-name="Logger#debug"><a href="Logger.html#debug">debug</a></li>
             
                 <li data-name="Logger#debugFail"><a href="Logger.html#debugFail">debugFail</a></li>
@@ -80,6 +84,8 @@
                 <li data-name="Logger#inspectVar"><a href="Logger.html#inspectVar">inspectVar</a></li>
             
                 <li data-name="Logger#log"><a href="Logger.html#log">log</a></li>
+            
+                <li data-name="Logger#setContext"><a href="Logger.html#setContext">setContext</a></li>
             
                 <li data-name="Logger#success"><a href="Logger.html#success">success</a></li>
             
@@ -129,7 +135,7 @@ This records are treated by handlers</div>
     <div class="nameContainer">
         <h4 class="name" id="Logger">
             
-            new Logger<span class="signature">(key, displayName)</span>
+            new Logger<span class="signature">(key, <span class="optional">displayName</span>)</span>
         </h4>
     
         
@@ -192,6 +198,11 @@ This records are treated by handlers</div>
             
             <td class="description last">
                 
+                    
+                    
+                        
+                    
+                
                 </td>
         </tr>
 	
@@ -214,6 +225,13 @@ This records are treated by handlers</div>
             
             
             <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
                 
                 </td>
         </tr>
@@ -291,7 +309,7 @@ This records are treated by handlers</div>
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 70
+            /home/ubuntu/nightingale-logger/lib/index.js, line 111
         </div>
         
     </div>
@@ -409,7 +427,7 @@ Use this only if you know what you are doing.
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 200
+            /home/ubuntu/nightingale-logger/lib/index.js, line 241
         </div>
         
     </div>
@@ -612,6 +630,345 @@ Use this only if you know what you are doing.
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="child">
+            
+            child<span class="signature">(childSuffixKey, <span class="optional">childDisplayName</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            /home/ubuntu/nightingale-logger/lib/index.js, line 70
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create a child logger
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>childSuffixKey</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                    
+                        
+                    
+                
+                </td>
+        </tr>
+	
+	
+	
+        <tr>
+            
+                <td class="name"><code>childDisplayName</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                    
+                        <span class="optional">optional</span>
+                    
+                    
+                        
+                    
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                        <a href="Logger.html">Logger</a>
+                        
+                    
+            </td>
+            <td class="description last"></td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
+        <h4 class="name" id="context">
+            
+            context<span class="signature">(context)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            /home/ubuntu/nightingale-logger/lib/index.js, line 89
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Create a new Logger with the same key a this attached context
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Type</th>
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr>
+            
+            <td class="type">
+            
+                        <a href="Logger.html">Logger</a>
+                        
+                    
+            </td>
+            <td class="description last"></td>
+        </tr>
+    
+    </tbody>
+</table>
+
+    
+    
+    
+        <h5>Example</h5>
+        
+
+    
+    <pre class="prettyprint"><code>const loggerMyService = new Logger('app.myService');
+function someAction(arg1) {
+    const logger = loggerMyService.context({ arg1 });
+    logger.info('starting');
+    // do stuff
+    logger.info('done');
+}</code></pre>
+    
+
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="debug">
             
             debug<span class="signature">(message, <span class="optional">metadata</span>, <span class="optional">metadataStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
@@ -619,7 +976,7 @@ Use this only if you know what you are doing.
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 145
+            /home/ubuntu/nightingale-logger/lib/index.js, line 186
         </div>
         
     </div>
@@ -829,7 +1186,7 @@ Use this only if you know what you are doing.
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 325
+            /home/ubuntu/nightingale-logger/lib/index.js, line 366
         </div>
         
     </div>
@@ -1039,7 +1396,7 @@ Use this only if you know what you are doing.
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 281
+            /home/ubuntu/nightingale-logger/lib/index.js, line 322
         </div>
         
     </div>
@@ -1249,7 +1606,7 @@ Use this only if you know what you are doing.
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 382
+            /home/ubuntu/nightingale-logger/lib/index.js, line 423
         </div>
         
     </div>
@@ -1472,7 +1829,7 @@ Use this only if you know what you are doing.
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 181
+            /home/ubuntu/nightingale-logger/lib/index.js, line 222
         </div>
         
     </div>
@@ -1685,7 +2042,7 @@ Use this only if you know what you are doing.
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 410
+            /home/ubuntu/nightingale-logger/lib/index.js, line 451
         </div>
         
     </div>
@@ -1909,7 +2266,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 297
+            /home/ubuntu/nightingale-logger/lib/index.js, line 338
         </div>
         
     </div>
@@ -2119,7 +2476,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 212
+            /home/ubuntu/nightingale-logger/lib/index.js, line 253
         </div>
         
     </div>
@@ -2329,7 +2686,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 157
+            /home/ubuntu/nightingale-logger/lib/index.js, line 198
         </div>
         
     </div>
@@ -2539,7 +2896,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 309
+            /home/ubuntu/nightingale-logger/lib/index.js, line 350
         </div>
         
     </div>
@@ -2749,7 +3106,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 265
+            /home/ubuntu/nightingale-logger/lib/index.js, line 306
         </div>
         
     </div>
@@ -2959,7 +3316,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 224
+            /home/ubuntu/nightingale-logger/lib/index.js, line 265
         </div>
         
     </div>
@@ -3169,7 +3526,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 240
+            /home/ubuntu/nightingale-logger/lib/index.js, line 281
         </div>
         
     </div>
@@ -3407,7 +3764,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 97
+            /home/ubuntu/nightingale-logger/lib/index.js, line 138
         </div>
         
     </div>
@@ -3638,6 +3995,122 @@ class A {
             
 <dt>
     <div class="nameContainer">
+        <h4 class="name" id="setContext">
+            
+            setContext<span class="signature">(context)</span>
+        </h4>
+    
+        
+        <div class="tag-source">
+            /home/ubuntu/nightingale-logger/lib/index.js, line 100
+        </div>
+        
+    </div>
+
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        Set the context of this logger
+    </div>
+    
+
+    
+    
+    
+    
+    
+        
+
+<table class="params">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+		
+		<th>Type</th>
+		
+		
+		
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	
+	
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+            
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+            
+            
+            
+            <td class="description last">
+                
+                </td>
+        </tr>
+	
+	
+	</tbody>
+</table>
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <div class="nameContainer">
         <h4 class="name" id="success">
             
             success<span class="signature">(message, <span class="optional">metadata</span>, <span class="optional">metadataStyles</span>)</span><span class="glyphicon glyphicon-circle-arrow-right"></span><span class="type-signature returnType">{<a href="Logger.html">Logger</a>}</span>
@@ -3645,7 +4118,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 253
+            /home/ubuntu/nightingale-logger/lib/index.js, line 294
         </div>
         
     </div>
@@ -3855,7 +4328,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 336
+            /home/ubuntu/nightingale-logger/lib/index.js, line 377
         </div>
         
     </div>
@@ -3951,7 +4424,7 @@ class A {
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 351
+            /home/ubuntu/nightingale-logger/lib/index.js, line 392
         </div>
         
     </div>
@@ -4165,7 +4638,7 @@ and deletes the original record
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 133
+            /home/ubuntu/nightingale-logger/lib/index.js, line 174
         </div>
         
     </div>
@@ -4375,7 +4848,7 @@ and deletes the original record
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 169
+            /home/ubuntu/nightingale-logger/lib/index.js, line 210
         </div>
         
     </div>
@@ -4585,7 +5058,7 @@ and deletes the original record
     
         
         <div class="tag-source">
-            /home/ubuntu/nightingale-logger/lib/index.js, line 435
+            /home/ubuntu/nightingale-logger/lib/index.js, line 476
         </div>
         
     </div>
@@ -4815,7 +5288,7 @@ class A {
         
 
         <footer>
-            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Fri May 06 2016 11:29:19 GMT+0000 (UTC)
+            Documentation generated by <a target="_blank" href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Thu May 26 2016 17:27:35 GMT+0000 (UTC)
         </footer>
     </div>
 </div>

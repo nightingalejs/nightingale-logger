@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">17.02% </span>
+        <span class="strong">16.16% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/94</span>
+        <span class='fraction'>16/99</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">10% </span>
+        <span class="strong">9.62% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/50</span>
+        <span class='fraction'>5/52</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.14% </span>
+        <span class="strong">6.45% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/28</span>
+        <span class='fraction'>2/31</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">17.65% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>15/85</span>
+        <span class='fraction'>15/90</span>
       </div>
     </div>
   </div>
@@ -492,7 +492,48 @@
 447
 448
 449
-450</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -548,6 +589,47 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -992,7 +1074,7 @@ let Logger = class Logger {
      * Create a new Logger
      *
      * @param {string} key
-     * @param {string} displayName
+     * @param {string} [displayName]
     */
     constructor(key, displayName) {
         this.key = key;
@@ -1001,6 +1083,47 @@ let Logger = class Logger {
 &nbsp;
     getConfig<span class="fstat-no" title="function not covered" >() {</span>
 <span class="cstat-no" title="statement not covered" >        return getConfigForLogger(this.key);</span>
+    }
+&nbsp;
+    /**
+     * Create a child logger
+     *
+     * @param {string} childSuffixKey
+     * @param {string} [childDisplayName]
+     * @returns {Logger}
+    */
+    child<span class="fstat-no" title="function not covered" >(childSuffixKey, childDisplayName) {</span>
+<span class="cstat-no" title="statement not covered" >        return new Logger(`${ this.key }.${ childSuffixKey }`, childDisplayName);</span>
+    }
+&nbsp;
+    /**
+     * Create a new Logger with the same key a this attached context
+     *
+     * @example
+     * const loggerMyService = new Logger('app.myService');
+     * function someAction(arg1) {
+     *     const logger = loggerMyService.context({ arg1 });
+     *     logger.info('starting');
+     *     // do stuff
+     *     logger.info('done');
+     * }
+     *
+     * @param {Object} context
+     * @returns {Logger}
+    */
+    context<span class="fstat-no" title="function not covered" >(context) {</span>
+<span class="cstat-no" title="statement not covered" >        const logger = new Logger(this.key);</span>
+<span class="cstat-no" title="statement not covered" >        logger.setContext(context);</span>
+<span class="cstat-no" title="statement not covered" >        return logger;</span>
+    }
+&nbsp;
+    /**
+     * Set the context of this logger
+     *
+     * @param {Object} context
+    */
+    setContext<span class="fstat-no" title="function not covered" >(context) {</span>
+<span class="cstat-no" title="statement not covered" >        this._context = context;</span>
     }
 &nbsp;
     /**
@@ -1016,7 +1139,7 @@ let Logger = class Logger {
 <span class="cstat-no" title="statement not covered" >        let handlers = _getConfig.handlers;</span>
 <span class="cstat-no" title="statement not covered" >        let processors = _getConfig.processors;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        handlers = handlers.filter(handler =&gt; <span class="cstat-no" title="statement not covered" >handler.isHandling(record.level))</span>;</span>
+<span class="cstat-no" title="statement not covered" >        handlers = handlers.filter(handler =&gt; <span class="cstat-no" title="statement not covered" >handler.isHandling(record.level, this.key))</span>;</span>
 <span class="cstat-no" title="statement not covered" >        if (handlers.length === 0) {</span>
 <span class="cstat-no" title="statement not covered" >            return;</span>
         }
@@ -1052,7 +1175,7 @@ let Logger = class Logger {
             displayName: this.displayName,
             datetime: new Date(),
             message: message,
-            context: context,
+            context: context || this._context,
             metadata: metadata,
             extra: {}
         };
@@ -1396,7 +1519,7 @@ exports.default = Logger;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri May 06 2016 11:29:20 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu May 26 2016 17:27:35 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../prettify.js"></script>
