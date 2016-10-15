@@ -575,7 +575,8 @@
 530
 531
 532
-533</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+533
+534</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -596,6 +597,7 @@
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1131,6 +1133,7 @@ function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? <s
   };
 }
 &nbsp;
+/** @private */
 <span class="fstat-no" title="function not covered" >function getConfigForLogger(key) {</span>
 <span class="cstat-no" title="statement not covered" >  return global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key);</span>
 }
@@ -1248,8 +1251,8 @@ class Logger {
    * @return {Logger}
    */
   log<span class="fstat-no" title="function not covered" >(message, metadata) {</span>
-<span class="cstat-no" title="statement not covered" >    let level = arguments.length &lt;= 2 || arguments[2] === undefined ? _nightingaleLevels2.default.INFO : arguments[2];</span>
-<span class="cstat-no" title="statement not covered" >    let options = arguments.length &lt;= 3 || arguments[3] === undefined ? undefined : arguments[3];</span>
+<span class="cstat-no" title="statement not covered" >    let level = arguments.length &gt; 2 &amp;&amp; arguments[2] !== undefined ? arguments[2] : _nightingaleLevels2.default.INFO;</span>
+<span class="cstat-no" title="statement not covered" >    let options = arguments.length &gt; 3 &amp;&amp; arguments[3] !== undefined ? arguments[3] : undefined;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    let context = metadata &amp;&amp; metadata.context;</span>
 <span class="cstat-no" title="statement not covered" >    if (metadata) {</span>
@@ -1332,7 +1335,7 @@ class Logger {
    * @return {Logger}
    */
   error<span class="fstat-no" title="function not covered" >(message) {</span>
-<span class="cstat-no" title="statement not covered" >    let metadata = arguments.length &lt;= 1 || arguments[1] === undefined ? {} : arguments[1];</span>
+<span class="cstat-no" title="statement not covered" >    let metadata = arguments.length &gt; 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : {};</span>
 <span class="cstat-no" title="statement not covered" >    let metadataStyles = arguments[2];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (message instanceof Error) {</span>
@@ -1491,7 +1494,7 @@ class Logger {
    * @returns {*} time to pass to timeEnd
    */
   time<span class="fstat-no" title="function not covered" >(message, metadata, metadataStyles) {</span>
-<span class="cstat-no" title="statement not covered" >    let level = arguments.length &lt;= 3 || arguments[3] === undefined ? _nightingaleLevels2.default.DEBUG : arguments[3];</span>
+<span class="cstat-no" title="statement not covered" >    let level = arguments.length &gt; 3 &amp;&amp; arguments[3] !== undefined ? arguments[3] : _nightingaleLevels2.default.DEBUG;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (message) {</span>
 <span class="cstat-no" title="statement not covered" >      this.log(message, metadata, level, { metadataStyles });</span>
@@ -1517,9 +1520,9 @@ class Logger {
    * @param {number} [level = levels.DEBUG]
    */
   timeEnd<span class="fstat-no" title="function not covered" >(time, message) {</span>
-<span class="cstat-no" title="statement not covered" >    let metadata = arguments.length &lt;= 2 || arguments[2] === undefined ? {} : arguments[2];</span>
+<span class="cstat-no" title="statement not covered" >    let metadata = arguments.length &gt; 2 &amp;&amp; arguments[2] !== undefined ? arguments[2] : {};</span>
 <span class="cstat-no" title="statement not covered" >    let metadataStyles = arguments[3];</span>
-<span class="cstat-no" title="statement not covered" >    let level = arguments.length &lt;= 4 || arguments[4] === undefined ? _nightingaleLevels2.default.DEBUG : arguments[4];</span>
+<span class="cstat-no" title="statement not covered" >    let level = arguments.length &gt; 4 &amp;&amp; arguments[4] !== undefined ? arguments[4] : _nightingaleLevels2.default.DEBUG;</span>
 <span class="cstat-no" title="statement not covered" >    let options = arguments[5];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    const now = Date.now();</span>
@@ -1572,7 +1575,7 @@ class Logger {
    * @return {Logger}
    */
   enter<span class="fstat-no" title="function not covered" >(fn) {</span>
-<span class="cstat-no" title="statement not covered" >    let metadata = arguments.length &lt;= 1 || arguments[1] === undefined ? {} : arguments[1];</span>
+<span class="cstat-no" title="statement not covered" >    let metadata = arguments.length &gt; 1 &amp;&amp; arguments[1] !== undefined ? arguments[1] : {};</span>
 <span class="cstat-no" title="statement not covered" >    let metadataStyles = arguments[2];</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    metadata = _extends({</span>
@@ -1645,7 +1648,7 @@ exports.default = Logger;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Oct 01 2016 14:57:54 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Oct 15 2016 20:18:04 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
