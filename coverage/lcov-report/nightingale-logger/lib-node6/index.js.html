@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.73% </span>
+        <span class="strong">12.84% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>14/110</span>
+        <span class='fraction'>14/109</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">7.58% </span>
@@ -30,9 +30,9 @@
         <span class='fraction'>5/66</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.71% </span>
+        <span class="strong">5.56% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/35</span>
+        <span class='fraction'>2/36</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">13% </span>
@@ -576,7 +576,13 @@
 531
 532
 533
-534</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+534
+535
+536
+537
+538
+539
+540</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -623,6 +629,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -689,7 +701,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1127,15 +1139,15 @@ var _nightingaleLevels2 = _interopRequireDefault(_nightingaleLevels);
 &nbsp;
 function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? <span class="branch-0 cbranch-no" title="branch not covered" >obj </span>: { default: obj }; }
 &nbsp;
-<span class="missing-if-branch" title="else path not taken" >E</span>if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER) {
-  global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="missing-if-branch" title="else path not taken" >E</span>if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD) {
+  global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = <span class="fstat-no" title="function not covered" >function () {</span>
 <span class="cstat-no" title="statement not covered" >    return { handlers: [], processors: [] };</span>
   };
 }
 &nbsp;
 /** @private */
-<span class="fstat-no" title="function not covered" >function getConfigForLogger(key) {</span>
-<span class="cstat-no" title="statement not covered" >  return global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key);</span>
+<span class="fstat-no" title="function not covered" >function getConfigForLoggerRecord(key, recordLevel) {</span>
+<span class="cstat-no" title="statement not covered" >  return global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD(key, recordLevel);</span>
 }
 &nbsp;
 /**
@@ -1155,8 +1167,14 @@ class Logger {
     this.displayName = displayName;
   }
 &nbsp;
+  /** @private */
+  getHandlersAndProcessors<span class="fstat-no" title="function not covered" >(recordLevel) {</span>
+<span class="cstat-no" title="statement not covered" >    return getConfigForLoggerRecord(this.key, recordLevel);</span>
+  }
+&nbsp;
+  /** @private */
   getConfig<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >    return getConfigForLogger(this.key);</span>
+<span class="cstat-no" title="statement not covered" >    throw new Error('use getHandlersAndProcessors instead of getConfig');</span>
   }
 &nbsp;
   /**
@@ -1217,12 +1235,12 @@ class Logger {
    * @param {Object} record
    */
   addRecord<span class="fstat-no" title="function not covered" >(record) {</span>
-<span class="cstat-no" title="statement not covered" >    var _getConfig = this.getConfig();</span>
+<span class="cstat-no" title="statement not covered" >    var _getHandlersAndProces = this.getHandlersAndProcessors(record.level);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    let handlers = _getConfig.handlers;</span>
-<span class="cstat-no" title="statement not covered" >    let processors = _getConfig.processors;</span>
+<span class="cstat-no" title="statement not covered" >    let handlers = _getHandlersAndProces.handlers;</span>
+<span class="cstat-no" title="statement not covered" >    let processors = _getHandlersAndProces.processors;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    handlers = handlers.filter(handler =&gt; <span class="cstat-no" title="statement not covered" >handler.isHandling(record.level, this.key))</span>;</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    if (handlers.length === 0) {</span>
 <span class="cstat-no" title="statement not covered" >      if (record.level &gt; _nightingaleLevels2.default.ERROR) {</span>
         // eslint-disable-next-line no-console
@@ -1648,7 +1666,7 @@ exports.default = Logger;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sat Oct 15 2016 20:20:32 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Sun Oct 16 2016 17:31:47 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
