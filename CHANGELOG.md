@@ -1,3 +1,8 @@
+### v2.0.0
+
+- [`5038378`](https://github.com/nightingalejs/nightingale-logger/commit/50383782f67e7aec72b5e2acc03c3059eea50636) chore(package): pob-release@^2.2.2 (Christophe Hurpeau)
+- [`e37277d`](https://github.com/nightingalejs/nightingale-logger/commit/e37277d7baa95871424a02672b89c8cce56abb5f) nightingale v2 (Christophe Hurpeau)
+
 ### v1.5.0
 
 - [`e54efb4`](https://github.com/nightingalejs/nightingale-logger/commit/e54efb42e9eeda7133d4c0cc8b5a4e89cd77704d) jsdoc (Christophe Hurpeau)
