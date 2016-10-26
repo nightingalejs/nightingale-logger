@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.96% </span>
+        <span class="strong">14.78% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>14/108</span>
+        <span class='fraction'>17/115</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">7.58% </span>
+        <span class="strong">9.59% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/66</span>
+        <span class='fraction'>7/73</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">5.56% </span>
+        <span class="strong">5.41% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/36</span>
+        <span class='fraction'>2/37</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">13.13% </span>
+        <span class="strong">15.24% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>13/99</span>
+        <span class='fraction'>16/105</span>
       </div>
     </div>
   </div>
@@ -582,7 +582,23 @@
 537
 538
 539
-540</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -606,6 +622,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -626,6 +657,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -699,7 +731,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1139,9 +1171,24 @@ var _nightingaleLevels2 = _interopRequireDefault(_nightingaleLevels);
 &nbsp;
 function _interopRequireDefault(obj) { return obj &amp;&amp; obj.__esModule ? <span class="branch-0 cbranch-no" title="branch not covered" >obj </span>: { default: obj }; }
 &nbsp;
-<span class="missing-if-branch" title="else path not taken" >E</span>if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD) {
-  global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="missing-if-branch" title="else path not taken" >E</span>if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER) {
+  global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER = <span class="fstat-no" title="function not covered" >function () {</span>
 <span class="cstat-no" title="statement not covered" >    return { handlers: [], processors: [] };</span>
+  };
+}
+&nbsp;
+<span class="missing-if-branch" title="else path not taken" >E</span>if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD) {
+  global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = <span class="fstat-no" title="function not covered" >function (key, level) {</span>
+<span class="cstat-no" title="statement not covered" >    var _global$__NIGHTINGALE = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    const handlers = _global$__NIGHTINGALE.handlers,</span>
+          processors = _global$__NIGHTINGALE.processors;
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return {</span>
+      handlers: handlers.filter(handler =&gt; <span class="cstat-no" title="statement not covered" >level &gt;= handler.minLevel &amp;&amp; (!handler.isHandling || handler.isHandling(level, key)))</span>,
+      processors
+    };
   };
 }
 &nbsp;
@@ -1163,7 +1210,8 @@ class Logger {
    * @param {string} [displayName]
    */
   constructor(key, displayName) {
-    this.key = key;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (key.includes('.')) <span class="cstat-no" title="statement not covered" >this.warn('nightingale: `.` in key is deprecated, replace with `:`');</span>
+    this.key = key.replace('.', ':');
     this.displayName = displayName;
   }
 &nbsp;
@@ -1174,7 +1222,7 @@ class Logger {
 &nbsp;
   /** @private */
   getConfig<span class="fstat-no" title="function not covered" >() {</span>
-<span class="cstat-no" title="statement not covered" >    throw new Error('use getHandlersAndProcessors instead of getConfig');</span>
+<span class="cstat-no" title="statement not covered" >    return global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(this.key);</span>
   }
 &nbsp;
   /**
@@ -1185,7 +1233,7 @@ class Logger {
    * @returns {Logger}
    */
   child<span class="fstat-no" title="function not covered" >(childSuffixKey, childDisplayName) {</span>
-<span class="cstat-no" title="statement not covered" >    return new Logger(`${ this.key }.${ childSuffixKey }`, childDisplayName);</span>
+<span class="cstat-no" title="statement not covered" >    return new Logger(`${ this.key }:${ childSuffixKey }`, childDisplayName);</span>
   }
 &nbsp;
   /**
@@ -1237,8 +1285,8 @@ class Logger {
   addRecord<span class="fstat-no" title="function not covered" >(record) {</span>
 <span class="cstat-no" title="statement not covered" >    var _getHandlersAndProces = this.getHandlersAndProcessors(record.level);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    let handlers = _getHandlersAndProces.handlers;</span>
-<span class="cstat-no" title="statement not covered" >    let processors = _getHandlersAndProces.processors;</span>
+<span class="cstat-no" title="statement not covered" >    let handlers = _getHandlersAndProces.handlers,</span>
+        processors = _getHandlersAndProces.processors;
 &nbsp;
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    if (handlers.length === 0) {</span>
@@ -1666,7 +1714,7 @@ exports.default = Logger;
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Oct 20 2016 19:39:01 GMT+0000 (UTC)
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Oct 26 2016 20:39:27 GMT+0000 (UTC)
 </div>
 </div>
 <script src="../../prettify.js"></script>
