@@ -30,8 +30,8 @@ if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD) {
   global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = function (key, level) {
     var _global$__NIGHTINGALE = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key);
 
-    const handlers = _global$__NIGHTINGALE.handlers;
-    const processors = _global$__NIGHTINGALE.processors;
+    const handlers = _global$__NIGHTINGALE.handlers,
+          processors = _global$__NIGHTINGALE.processors;
 
 
     return {
@@ -81,7 +81,11 @@ class Logger {
    * @returns {Logger}
    */
   child(childSuffixKey, childDisplayName) {
-    return new Logger(`${ this.key }.${ childSuffixKey }`, childDisplayName);
+    const child = new Logger(`${ this.key }.${ childSuffixKey }`, childDisplayName);
+    if (this._context) {
+      child.setContext(Object.create(this._context));
+    }
+    return child;
   }
 
   /**
@@ -111,6 +115,9 @@ class Logger {
    * @param {Object} context
    */
   setContext(context) {
+    if (this._context) {
+      this.warn('setContext: context override, consider using extendsContext instead.');
+    }
     this._context = context;
   }
 
@@ -133,8 +140,8 @@ class Logger {
   addRecord(record) {
     var _getHandlersAndProces = this.getHandlersAndProcessors(record.level);
 
-    let handlers = _getHandlersAndProces.handlers;
-    let processors = _getHandlersAndProces.processors;
+    let handlers = _getHandlersAndProces.handlers,
+        processors = _getHandlersAndProces.processors;
 
 
     if (handlers.length === 0) {
@@ -447,8 +454,8 @@ class Logger {
       metadata.readableTime = `${ diffTime }ms`;
     } else {
       const seconds = diffTime > 1000 && Math.floor(diffTime / 1000);
-      const ms = diffTime - seconds * 1000;
-      metadata.readableTime = `${ seconds ? `${ seconds }s and ` : '' }${ ms }ms`;
+
+      metadata.readableTime = `${ seconds ? `${ seconds }s and ` : '' }${ diffTime - seconds * 1000 }ms`;
     }
 
     metadata.timeMs = diffTime;

@@ -36,11 +36,9 @@ if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER) {
 
 if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD) {
   global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = function (key, level) {
-    var _global$__NIGHTINGALE = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key);
-
-    var handlers = _global$__NIGHTINGALE.handlers;
-    var processors = _global$__NIGHTINGALE.processors;
-
+    var _global$__NIGHTINGALE = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key),
+        handlers = _global$__NIGHTINGALE.handlers,
+        processors = _global$__NIGHTINGALE.processors;
 
     return {
       handlers: handlers.filter(function (handler) {
@@ -112,7 +110,11 @@ var Logger = function () {
 
       _assert(childDisplayName, _tcombForked2.default.maybe(_tcombForked2.default.String), 'childDisplayName');
 
-      return new Logger(this.key + '.' + childSuffixKey, childDisplayName);
+      var child = new Logger(this.key + '.' + childSuffixKey, childDisplayName);
+      if (this._context) {
+        child.setContext(Object.create(this._context));
+      }
+      return child;
     }
 
     /**
@@ -152,6 +154,9 @@ var Logger = function () {
     value: function setContext(context) {
       _assert(context, _tcombForked2.default.Object, 'context');
 
+      if (this._context) {
+        this.warn('setContext: context override, consider using extendsContext instead.');
+      }
       this._context = context;
     }
 
@@ -182,11 +187,9 @@ var Logger = function () {
     value: function addRecord(record) {
       _assert(record, _tcombForked2.default.Object, 'record');
 
-      var _getHandlersAndProces = this.getHandlersAndProcessors(record.level);
-
-      var handlers = _getHandlersAndProces.handlers;
-      var processors = _getHandlersAndProces.processors;
-
+      var _getHandlersAndProces = this.getHandlersAndProcessors(record.level),
+          handlers = _getHandlersAndProces.handlers,
+          processors = _getHandlersAndProces.processors;
 
       if (handlers.length === 0) {
         if (record.level > _nightingaleLevels2.default.ERROR) {
@@ -571,8 +574,8 @@ var Logger = function () {
         metadata.readableTime = diffTime + 'ms';
       } else {
         var seconds = diffTime > 1000 && Math.floor(diffTime / 1000);
-        var ms = diffTime - seconds * 1000;
-        metadata.readableTime = '' + (seconds ? seconds + 's and ' : '') + ms + 'ms';
+
+        metadata.readableTime = '' + (seconds ? seconds + 's and ' : '') + (diffTime - seconds * 1000) + 'ms';
       }
 
       metadata.timeMs = diffTime;

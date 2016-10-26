@@ -12,7 +12,9 @@ if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER) {
 
 if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD) {
   global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = function (key, level) {
-    var { handlers, processors } = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key);
+    var _global$__NIGHTINGALE = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key),
+        handlers = _global$__NIGHTINGALE.handlers,
+        processors = _global$__NIGHTINGALE.processors;
 
     return {
       handlers: handlers.filter(handler => level >= findLevel(handler.minLevel, key) && (!handler.isHandling || handler.isHandling(level, key))),
@@ -61,7 +63,11 @@ export default class Logger {
    * @returns {Logger}
    */
   child(childSuffixKey, childDisplayName) {
-    return new Logger(`${ this.key }.${ childSuffixKey }`, childDisplayName);
+    var child = new Logger(`${ this.key }.${ childSuffixKey }`, childDisplayName);
+    if (this._context) {
+      child.setContext(Object.create(this._context));
+    }
+    return child;
   }
 
   /**
@@ -91,6 +97,9 @@ export default class Logger {
    * @param {Object} context
    */
   setContext(context) {
+    if (this._context) {
+      this.warn('setContext: context override, consider using extendsContext instead.');
+    }
     this._context = context;
   }
 
@@ -111,7 +120,9 @@ export default class Logger {
    * @param {Object} record
    */
   addRecord(record) {
-    var { handlers, processors } = this.getHandlersAndProcessors(record.level);
+    var _getHandlersAndProces = this.getHandlersAndProcessors(record.level),
+        handlers = _getHandlersAndProces.handlers,
+        processors = _getHandlersAndProces.processors;
 
     if (handlers.length === 0) {
       if (record.level > levels.ERROR) {
@@ -140,7 +151,10 @@ export default class Logger {
    * @param {Object} [options]
    * @return {Logger}
    */
-  log(message, metadata, level = levels.INFO, options = undefined) {
+  log(message, metadata) {
+    var level = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : levels.INFO;
+    var options = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : undefined;
+
     var context = metadata && metadata.context;
     if (metadata) {
       delete metadata.context;
@@ -221,7 +235,10 @@ export default class Logger {
    * @param {Object} [metadataStyles]
    * @return {Logger}
    */
-  error(message, metadata = {}, metadataStyles) {
+  error(message) {
+    var metadata = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var metadataStyles = arguments[2];
+
     if (message instanceof Error) {
       metadata.error = message;
       message = `${ metadata.error.name }: ${ metadata.error.message }`;
@@ -377,7 +394,9 @@ export default class Logger {
    * @param {number} [level = levels.DEBUG]
    * @returns {*} time to pass to timeEnd
    */
-  time(message, metadata, metadataStyles, level = levels.DEBUG) {
+  time(message, metadata, metadataStyles) {
+    var level = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : levels.DEBUG;
+
     if (message) {
       this.log(message, metadata, level, { metadataStyles });
     }
@@ -401,7 +420,12 @@ export default class Logger {
    * @param {Object} [metadataStyles]
    * @param {number} [level = levels.DEBUG]
    */
-  timeEnd(time, message, metadata = {}, metadataStyles, level = levels.DEBUG, options) {
+  timeEnd(time, message) {
+    var metadata = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    var metadataStyles = arguments[3];
+    var level = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : levels.DEBUG;
+    var options = arguments[5];
+
     var now = Date.now();
 
     var diffTime = now - time;
@@ -410,8 +434,8 @@ export default class Logger {
       metadata.readableTime = `${ diffTime }ms`;
     } else {
       var seconds = diffTime > 1000 && Math.floor(diffTime / 1000);
-      var ms = diffTime - seconds * 1000;
-      metadata.readableTime = `${ seconds ? `${ seconds }s and ` : '' }${ ms }ms`;
+
+      metadata.readableTime = `${ seconds ? `${ seconds }s and ` : '' }${ diffTime - seconds * 1000 }ms`;
     }
 
     metadata.timeMs = diffTime;
@@ -451,7 +475,10 @@ export default class Logger {
    * @param {Object} [metadataStyles]
    * @return {Logger}
    */
-  enter(fn, metadata = {}, metadataStyles) {
+  enter(fn) {
+    var metadata = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+    var metadataStyles = arguments[2];
+
     metadata = _extends({
       functionName: fn.name
     }, metadata);

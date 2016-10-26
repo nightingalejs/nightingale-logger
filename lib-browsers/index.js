@@ -32,11 +32,9 @@ if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER) {
 
 if (!global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD) {
   global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER_RECORD = function (key, level) {
-    var _global$__NIGHTINGALE = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key);
-
-    var handlers = _global$__NIGHTINGALE.handlers;
-    var processors = _global$__NIGHTINGALE.processors;
-
+    var _global$__NIGHTINGALE = global.__NIGHTINGALE_GET_CONFIG_FOR_LOGGER(key),
+        handlers = _global$__NIGHTINGALE.handlers,
+        processors = _global$__NIGHTINGALE.processors;
 
     return {
       handlers: handlers.filter(function (handler) {
@@ -100,7 +98,11 @@ var Logger = function () {
   }, {
     key: 'child',
     value: function child(childSuffixKey, childDisplayName) {
-      return new Logger(this.key + '.' + childSuffixKey, childDisplayName);
+      var child = new Logger(this.key + '.' + childSuffixKey, childDisplayName);
+      if (this._context) {
+        child.setContext(Object.create(this._context));
+      }
+      return child;
     }
 
     /**
@@ -136,6 +138,9 @@ var Logger = function () {
   }, {
     key: 'setContext',
     value: function setContext(context) {
+      if (this._context) {
+        this.warn('setContext: context override, consider using extendsContext instead.');
+      }
       this._context = context;
     }
 
@@ -162,11 +167,9 @@ var Logger = function () {
   }, {
     key: 'addRecord',
     value: function addRecord(record) {
-      var _getHandlersAndProces = this.getHandlersAndProcessors(record.level);
-
-      var handlers = _getHandlersAndProces.handlers;
-      var processors = _getHandlersAndProces.processors;
-
+      var _getHandlersAndProces = this.getHandlersAndProcessors(record.level),
+          handlers = _getHandlersAndProces.handlers,
+          processors = _getHandlersAndProces.processors;
 
       if (handlers.length === 0) {
         if (record.level > _nightingaleLevels2.default.ERROR) {
@@ -537,8 +540,8 @@ var Logger = function () {
         metadata.readableTime = diffTime + 'ms';
       } else {
         var seconds = diffTime > 1000 && Math.floor(diffTime / 1000);
-        var ms = diffTime - seconds * 1000;
-        metadata.readableTime = '' + (seconds ? seconds + 's and ' : '') + ms + 'ms';
+
+        metadata.readableTime = '' + (seconds ? seconds + 's and ' : '') + (diffTime - seconds * 1000) + 'ms';
       }
 
       metadata.timeMs = diffTime;
