@@ -66,7 +66,11 @@ export default class Logger {
    * @returns {Logger}
    */
   child(childSuffixKey: string, childDisplayName: ?string) {
-    return new Logger(`${this.key}.${childSuffixKey}`, childDisplayName);
+    const child = new Logger(`${this.key}.${childSuffixKey}`, childDisplayName);
+    if (this._context) {
+      child.setContext(Object.create(this._context));
+    }
+    return child;
   }
 
   /**
@@ -96,6 +100,9 @@ export default class Logger {
    * @param {Object} context
    */
   setContext(context: Object) {
+    if (this._context) {
+      this.warn('setContext: context override, consider using extendsContext instead.');
+    }
     this._context = context;
   }
 
